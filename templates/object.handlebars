@@ -10,9 +10,9 @@ export interface I{{typeName}} {
 
 export class {{typeName}} implements I{{typeName}} {
 {{#properties}}
-{{{tsComments}}}{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
+{{{tsComments}}}private _{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
 {{/properties}}
 {{#additionalPropertiesType}}
-  private _[key: string]: {{{.}}};
+  [key: string]: {{{.}}};
 {{/additionalPropertiesType}}
 }
