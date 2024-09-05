@@ -13,7 +13,7 @@ export type ApiFnRequired<P, R> = (http: HttpClient, rootUrl: string, params: P,
 /**
  * Helper service to call API functions directly
  */
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class {{apiServiceClass}} {
   constructor(
     private config: {{configurationClass}},
