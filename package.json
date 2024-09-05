@@ -26,7 +26,7 @@
     "test:watch": "nodemon --watch './**/*' --exec 'npm run test'",
     "upver": "npm version prerelease && git add . && git commit -m \"new version\"",
     "up": "npm run compile && cd dist && npm publish --registry=https://npm.plhx.com.br:4873/",
-    "u": "start npm run upver && npm run up"
+    "u": "start /min npm run upver && npm run up"
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "~9.0.9",
