@@ -1,4 +1,14 @@
-export class {{typeName}} {
+export interface I{{typeName}} {
+{{#properties}}
+{{{tsComments}}}{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
+{{/properties}}
+{{#additionalPropertiesType}}
+
+  [key: string]: {{{.}}};
+{{/additionalPropertiesType}}
+}
+
+export class {{typeName}} implements I{{typeName}} {
 {{#properties}}
 {{{tsComments}}}{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
 {{/properties}}
