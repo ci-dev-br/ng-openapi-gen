@@ -56,8 +56,8 @@ This is enabled by default. Inline enums are not, because it would require anoth
 You may want to install `ng-openapi-gen` globally or just on your project. Here is an example for a global setup:
 
 ```bash
-$ npm install -g ng-openapi-gen
-$ ng-openapi-gen --input my-api.yaml --output my-app/src/app/api
+npm install -g ng-openapi-gen
+ng-openapi-gen --input my-api.yaml --output my-app/src/app/api
 ```
 
 Alternatively you can use the generator directly from within your build-script:
@@ -303,6 +303,7 @@ consistent with the swagger descriptor.
 
 To do so, create the `ng-openapi-gen.json` configuration file and add the
 following `scripts` to your `package.json`:
+
 ```json
 {
   "scripts": {
@@ -312,11 +313,13 @@ following `scripts` to your `package.json`:
   }
 }
 ```
+
 This way whenever you run `npm start` or `npm run build`, the API classes
 will be generated before actually serving / building your application.
 
 Also, if you use several configuration files, you can specify multiple times
 the call to `ng-openapi-gen`, like:
+
 ```json
 {
   "scripts": {
@@ -375,8 +378,8 @@ components:
 
 You can customize the Handlebars templates by copying the desired files from the [templates](https://github.com/cyclosproject/ng-openapi-gen/tree/master/templates) folder (only the ones you need to customize) to some folder in your project, and then reference it in the configuration file.
 
-For example, to make objects extend a base interface, copy the 
-[object.handlebars](https://github.com/cyclosproject/ng-openapi-gen/tree/master/templates) file to your `src/templates` folder. 
+For example, to make objects extend a base interface, copy the
+[object.handlebars](https://github.com/cyclosproject/ng-openapi-gen/tree/master/templates) file to your `src/templates` folder.
 Then, in `ng-openapi-gen.json` file, set the following: `"templates": "src/templates"`.
 Finally, the customized `src/templates/object.handlebars` would look like the following (based on the 0.17.2 version, subject to change in the future):
 
@@ -427,3 +430,8 @@ npm link
 ```
 
 At that point, the globally available ng-openapi-gen will be the one compiled to the `dist` folder.
+
+##  Custom Features
+
+Esta versão possui alterações pontuais no código gerado.
+- [>] Modelos gerados como Classe dos Modelos para permitir Reflection em tempo de execução com as estruturas de modelos auto-geradas;
