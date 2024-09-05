@@ -11,11 +11,11 @@ export interface I{{typeName}} {
 export class {{typeName}} implements I{{typeName}} {
 {{#properties}}
 {{{tsComments}}}private _{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
-public get {{{identifier}}}(value){ return this._{{{identifier}}}; }
-public set(value){
-if(this._{{{identifier}}} === value) return;
-this._{{{identifier}}} = value;
-}
+  public get {{{identifier}}}(value){ return this._{{{identifier}}}; }
+  public set {{{identifier}}}(value){
+    if(this._{{{identifier}}} === value) return;
+    this._{{{identifier}}} = value;
+  }
 {{/properties}}
 {{#additionalPropertiesType}}
 [key: string]: {{{.}}};
