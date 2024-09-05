@@ -11,8 +11,8 @@ export interface I{{typeName}} {
 export class {{typeName}} implements I{{typeName}} {
 {{#properties}}
 {{{tsComments}}}private _{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
-public get {{{identifier}}}(): {{{type}}}{ return this._{{{identifier}}}; }
-public set {{{identifier}}}(value: {{{type}}}){
+public get {{{identifier}}}(): {{{type}}}{{^required}}| undefined{{/required}}{ return this._{{{identifier}}}; }
+public set {{{identifier}}}(value: {{{type}}}{{^required}}| undefined{{/required}}){
 if(this._{{{identifier}}} === value) return;
 this._{{{identifier}}} = value;
 }
