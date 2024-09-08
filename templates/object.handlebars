@@ -21,4 +21,11 @@ export class {{typeName}} implements I{{typeName}} {
 {{#additionalPropertiesType}}
 [key: string]: {{{.}}};
 {{/additionalPropertiesType}}
+  toJSON(): I{{typeName}}{
+    return {
+        {{#properties}}
+          {{{identifier}}}:this._{{{identifier}}},
+        {{/properties}}
+    }
+  }
 }
