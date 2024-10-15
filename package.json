@@ -1,13 +1,14 @@
 {
-  "name": "@ci/ng-openapi-gen",
-  "version": "0.51.0-ci.22",
+  "name": "@ci/api-gen",
+  "version": "2.1.0-ci.1",
   "license": "MIT",
-  "author": "Cyclos development team",
-  "description": "An OpenAPI 3 codegen for Angular 12+",
+  "author": "pLinho<paulorettamozo@gmail.com",
+  "description": "@CI/Api-Gen Especificação 2.1.0 com open api 3.0 for Angular Projects",
   "keywords": [
     "angular",
     "openapi",
-    "codegen"
+    "codegen",
+    "ci-api"
   ],
   "repository": {
     "type": "git",
