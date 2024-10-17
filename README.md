@@ -1,17 +1,19 @@
-ng-openapi-gen: An OpenAPI 3 code generator for Angular
+@ci/api-gen: Based An OpenAPI 3 code generator for @ci/Angular
 ---
 
 ![Build status](https://github.com/cyclosproject/ng-openapi-gen/workflows/build/badge.svg)
 ![Test status](https://github.com/cyclosproject/ng-openapi-gen/workflows/test/badge.svg)
 
-This project is a NPM module that generates model interfaces and web service clients from an [OpenApi 3](https://www.openapis.org/) [specification](https://github.com/OAI/OpenAPI-Specification).
-The generated classes follow the principles of [Angular](https://angular.io/).
-The generated code is compatible with Angular 12+.
+O código gerado com esta biblioteca possui suporte para Angular 12+ e @ci/core 1.0+
 
-For a generator for [Swagger 2.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), use [ng-swagger-gen](https://github.com/cyclosproject/ng-swagger-gen) instead.
+Este gerador trás algumas regras de comportamento específicas para os modelos gerados, Adicionando metadados acesseis em tempo de execução que podem ser utilizados para devidir como renderizar determinada informação no template. Para ter acesso aos metadados utilize em seu projeto @ci/core/CodeModule.
+
+Os modelos devem ter seu comportamento padrão ao ng-openapi-gen com o diferencia desta versão o Objeto retorna em sua classe, enquanto na versão original os Objetos possuem apenas interface. 
 
 ## Highlights
+- Encasulamento do Objeto em uma Classe com os metadados da API sobre o objeto. Podem ser acessados com funções presentes em @ci/core;
 
+## Extended Highlights
 - It should be easy to use and to integrate with Angular CLI;
 - It should support `OpenAPI` specifications in both `JSON` and `YAML` formats;
 - Each tag in the OpenAPI specification generates an Angular `@Injectable()` service;
@@ -27,7 +29,8 @@ For a generator for [Swagger 2.0](https://github.com/OAI/OpenAPI-Specification/b
 - For large APIs it is possible to generate only functions for each API operation, and not entire services. This allows for tree-shakable code to be generated, resulting in lower bundle sizes.
 
 ## Limitations
-
+- no ay;
+## Extended Limitations
 - Only standard OpenAPI 3 descriptions will be generated. `ng-swagger-gen` allows several extensions, specially types from JSON schema, but they are out of scope for `ng-openapi-gen`. There is, however, support for a few [vendor extensions](#supported-vendor-extensions);
 - Servers per operation are not supported;
 - Only the first server is used as a default root URL in the configuration;
