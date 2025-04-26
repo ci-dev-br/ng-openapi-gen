@@ -12,17 +12,17 @@ export class {{typeName}} implements I{{typeName}} {
   static typeName = '{{typeName}}';
 {{#properties}}
 {{{tsComments}}}private _{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
-  public get {{{identifier}}}(): {{{type}}}{{^required}}| undefined{{/required}}{ return this._{{{identifier}}}; }
+  public get {{{identifier}}}(): {{{type}}}{{^required}} | undefined{{/required}}{ return this._{{{identifier}}}; }
  {{!--  @Property({
     label: '{{{identifier}}}'
   }) --}}
-  public set {{{identifier}}}(value: {{{type}}}{{^required}}| undefined{{/required}}){
+  public set {{{identifier}}}(value: {{{type}}}{{^required}} | undefined{{/required}}){
     if(this._{{{identifier}}} === value) return;
     this._{{{identifier}}} = value;
   }
 {{/properties}}
 {{#additionalPropertiesType}}
-[key: string]: {{{.}}};
+[key: string]?: {{{.}}};
 {{/additionalPropertiesType}}
   toJSON(): I{{typeName}}{
     return {
