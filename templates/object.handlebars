@@ -3,7 +3,6 @@ export interface I{{typeName}} {
 {{{tsComments}}}{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
 {{/properties}}
 {{#additionalPropertiesType}}
-
 [key: string]: {{{.}}};
 {{/additionalPropertiesType}}
 }
@@ -21,6 +20,11 @@ export class {{typeName}} implements I{{typeName}} {
     this._{{{identifier}}} = value;
   }
 {{/properties}}
+  constructor(object: I{{typeName}}){
+    {{#properties}}
+    this._{{{identifier}}} = object.{{{identifier}}};
+    {{/properties}}
+  }
 {{#additionalPropertiesType}}
 [key: string]?: {{{.}}};
 {{/additionalPropertiesType}}
