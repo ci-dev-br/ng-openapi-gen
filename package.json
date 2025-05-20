@@ -1,6 +1,6 @@
 {
   "name": "@ci/api-gen",
-  "version": "3.0.1-dev.1",
+  "version": "3.2.1",
   "license": "MIT",
   "author": "pLinho<paulorettamozo@gmail.com",
   "description": "@CI/Api-Gen Especificação 2.1.0 com open api 3.0 for Angular Projects",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/cyclosproject/ng-openapi-gen.git"
   },
-  "private": true,
+  "private": false,
   "bin": {
     "ng-openapi-gen": "lib/index.js"
   },
