@@ -1,13 +1,14 @@
 {
-  "name": "ng-openapi-gen",
-  "version": "0.51.0",
+  "name": "@ci/api-gen",
+  "version": "2.1.0-ci.6",
   "license": "MIT",
-  "author": "Cyclos development team",
-  "description": "An OpenAPI 3 codegen for Angular 12+",
+  "author": "pLinho<paulorettamozo@gmail.com",
+  "description": "@CI/Api-Gen Especificação 2.1.0 com open api 3.0 for Angular Projects",
   "keywords": [
     "angular",
     "openapi",
-    "codegen"
+    "codegen",
+    "ci-api"
   ],
   "repository": {
     "type": "git",
@@ -23,7 +24,10 @@
     "lint": "eslint 'lib/**'",
     "compile": "tsc --project tsconfig.json && ncp \"LICENSE\" dist && ncp \"README.md\" \"dist/README.md\" && ncp \"templates\" \"dist/templates\" && ncp \"node_modules\" \"dist/node_modules\" && rimraf \"dist/test\" && replace-in-file \"\\\"private\\\": true\" \"\\\"private\\\": false\" dist/package.json",
     "build": "npm run lint && npm run compile && npm test",
-    "test:watch": "nodemon --watch './**/*' --exec 'npm run test'"
+    "test:watch": "nodemon --watch './**/*' --exec 'npm run test'",
+    "upver": "npm version prerelease && git add . && git commit -m \"new version\"",
+    "up": "npm run compile && cd dist && npm publish --registry=https://npm.plhx.com.br:4873/",
+    "u": "start /min npm run upver && npm run up"
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "~9.0.9",

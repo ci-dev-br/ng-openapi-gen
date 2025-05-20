@@ -1,17 +1,19 @@
-ng-openapi-gen: An OpenAPI 3 code generator for Angular
+@ci/api-gen: Based An OpenAPI 3 code generator for @ci/Angular
 ---
 
 ![Build status](https://github.com/cyclosproject/ng-openapi-gen/workflows/build/badge.svg)
 ![Test status](https://github.com/cyclosproject/ng-openapi-gen/workflows/test/badge.svg)
 
-This project is a NPM module that generates model interfaces and web service clients from an [OpenApi 3](https://www.openapis.org/) [specification](https://github.com/OAI/OpenAPI-Specification).
-The generated classes follow the principles of [Angular](https://angular.io/).
-The generated code is compatible with Angular 12+.
+O código gerado com esta biblioteca possui suporte para Angular 12+ e @ci/core 1.0+
 
-For a generator for [Swagger 2.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), use [ng-swagger-gen](https://github.com/cyclosproject/ng-swagger-gen) instead.
+Este gerador trás algumas regras de comportamento específicas para os modelos gerados, Adicionando metadados acesseis em tempo de execução que podem ser utilizados para devidir como renderizar determinada informação no template. Para ter acesso aos metadados utilize em seu projeto @ci/core/CodeModule.
+
+Os modelos devem ter seu comportamento padrão ao ng-openapi-gen com o diferencia desta versão o Objeto retorna em sua classe, enquanto na versão original os Objetos possuem apenas interface. 
 
 ## Highlights
+- Encasulamento do Objeto em uma Classe com os metadados da API sobre o objeto. Podem ser acessados com funções presentes em @ci/core;
 
+## Extended Highlights
 - It should be easy to use and to integrate with Angular CLI;
 - It should support `OpenAPI` specifications in both `JSON` and `YAML` formats;
 - Each tag in the OpenAPI specification generates an Angular `@Injectable()` service;
@@ -27,7 +29,8 @@ For a generator for [Swagger 2.0](https://github.com/OAI/OpenAPI-Specification/b
 - For large APIs it is possible to generate only functions for each API operation, and not entire services. This allows for tree-shakable code to be generated, resulting in lower bundle sizes.
 
 ## Limitations
-
+- no ay;
+## Extended Limitations
 - Only standard OpenAPI 3 descriptions will be generated. `ng-swagger-gen` allows several extensions, specially types from JSON schema, but they are out of scope for `ng-openapi-gen`. There is, however, support for a few [vendor extensions](#supported-vendor-extensions);
 - Servers per operation are not supported;
 - Only the first server is used as a default root URL in the configuration;
@@ -56,8 +59,8 @@ This is enabled by default. Inline enums are not, because it would require anoth
 You may want to install `ng-openapi-gen` globally or just on your project. Here is an example for a global setup:
 
 ```bash
-$ npm install -g ng-openapi-gen
-$ ng-openapi-gen --input my-api.yaml --output my-app/src/app/api
+npm install -g ng-openapi-gen
+ng-openapi-gen --input my-api.yaml --output my-app/src/app/api
 ```
 
 Alternatively you can use the generator directly from within your build-script:
@@ -303,6 +306,7 @@ consistent with the swagger descriptor.
 
 To do so, create the `ng-openapi-gen.json` configuration file and add the
 following `scripts` to your `package.json`:
+
 ```json
 {
   "scripts": {
@@ -312,11 +316,13 @@ following `scripts` to your `package.json`:
   }
 }
 ```
+
 This way whenever you run `npm start` or `npm run build`, the API classes
 will be generated before actually serving / building your application.
 
 Also, if you use several configuration files, you can specify multiple times
 the call to `ng-openapi-gen`, like:
+
 ```json
 {
   "scripts": {
@@ -375,8 +381,8 @@ components:
 
 You can customize the Handlebars templates by copying the desired files from the [templates](https://github.com/cyclosproject/ng-openapi-gen/tree/master/templates) folder (only the ones you need to customize) to some folder in your project, and then reference it in the configuration file.
 
-For example, to make objects extend a base interface, copy the 
-[object.handlebars](https://github.com/cyclosproject/ng-openapi-gen/tree/master/templates) file to your `src/templates` folder. 
+For example, to make objects extend a base interface, copy the
+[object.handlebars](https://github.com/cyclosproject/ng-openapi-gen/tree/master/templates) file to your `src/templates` folder.
 Then, in `ng-openapi-gen.json` file, set the following: `"templates": "src/templates"`.
 Finally, the customized `src/templates/object.handlebars` would look like the following (based on the 0.17.2 version, subject to change in the future):
 
@@ -427,3 +433,8 @@ npm link
 ```
 
 At that point, the globally available ng-openapi-gen will be the one compiled to the `dist` folder.
+
+##  Custom Features
+
+Esta versão possui alterações pontuais no código gerado.
+- [>] Modelos gerados como Classe dos Modelos para permitir Reflection em tempo de execução com as estruturas de modelos auto-geradas;

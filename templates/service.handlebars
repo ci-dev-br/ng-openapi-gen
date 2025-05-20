@@ -12,7 +12,7 @@ import { {{responseClass}} } from '../{{responseFile}}';
 {{#imports}}import { {{{typeName}}}{{#useAlias}} as {{{qualifiedName}}}{{/useAlias}} } from '{{{@root.pathToRoot}}}{{{fullPath}}}';
 {{/imports}}
 
-{{{tsComments}}}@Injectable({ providedIn: 'root' })
+{{{tsComments}}}@Injectable()
 export class {{typeName}} extends {{baseServiceClass}} {
   constructor(config: {{configurationClass}}, http: HttpClient) {
     super(config, http);
