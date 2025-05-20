@@ -1,11 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
-import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { {{configurationClass}}, {{configurationParams}} } from './{{configurationFile}}';
 
 {{#services}}import { {{typeName}} } from './services/{{fileName}}';
 {{/services}}
+
+export function getServiceAsSchema(schema: string): Type<any>{
+  return { {{#services}}'{{typeName}}': {{typeName}},{{/services}} }[schema+ 'Service'];
+} 
 
 /**
  * Module that provides all services and configuration.
