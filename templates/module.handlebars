@@ -7,8 +7,8 @@ import { {{configurationClass}}, {{configurationParams}} } from './{{configurati
 {{#services}}import { {{typeName}} } from './services/{{fileName}}';
 {{/services}}
 
-export function getServiceAsSchema(schema: string): Type<any>{
-  return { {{#services}}'{{typeName}}': {{typeName}},{{/services}} }[schema+ 'Service'];
+export function getServiceAsSchema(schema: string): { [name: string]: Type<any>}{
+  return { {{#services}}'{{typeName}}': {{typeName}},{{/services}} };
 } 
 
 /**
