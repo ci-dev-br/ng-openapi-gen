@@ -21,6 +21,7 @@ export class Service extends GenType {
     // Collect the imports
     for (const operation of operations) {
       operation.variants.forEach(variant => {
+        variant.methodName = variant.methodName.replace(tag.name, '');
         // Import the variant fn
         this.addImport(variant);
         // Import the variant parameters
