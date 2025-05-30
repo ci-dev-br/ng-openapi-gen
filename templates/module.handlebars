@@ -19,8 +19,6 @@ export function getServiceAsSchema(schema: string): Type<any>{
   exports: [],
   declarations: [],
   providers: [
-{{#services}}    {{typeName}},
-{{/services}}
     {{configurationClass}}
   ],
 })
@@ -29,6 +27,8 @@ export class {{moduleClass}} {
     return {
       ngModule: {{moduleClass}},
       providers: [
+        {{#services}}{{typeName}},
+        {{/services}},
         {
           provide: {{configurationClass}},
           useValue: params
