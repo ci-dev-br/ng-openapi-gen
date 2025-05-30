@@ -28,8 +28,7 @@ export class {{moduleClass}} {
       ngModule: {{moduleClass}},
       providers: [
         {{#services}}{{typeName}},
-        {{/services}},
-        {
+        {{/services}}{
           provide: {{configurationClass}},
           useValue: params
         }
