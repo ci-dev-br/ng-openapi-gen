@@ -5,44 +5,33 @@ import { fileName, tsComments, tsType, unqualifiedName } from './gen-utils';
 import { Options } from './options';
 import { Property } from './property';
 import { upperCase } from 'lodash';
-
-
 /**
  * Context to generate a model
  */
 export class Model extends GenType {
-
   // General type
   isSimple: boolean;
   isEnum: boolean;
   isObject: boolean;
-
   // Simple properties
   simpleType: string;
   enumValues: EnumValue[];
   enumArrayName?: string;
   enumArrayFileName?: string;
-
   // Array properties
   elementType: string;
-
   // Object properties
   properties: Property[];
   additionalPropertiesType: string;
-
   constructor(public openApi: OpenAPIObject, name: string, public schema: SchemaObject, options: Options) {
     super(name, unqualifiedName, options);
-
     const description = schema.description || '';
     this.tsComments = tsComments(description, 0, schema.deprecated);
-
     const type = schema.type || 'any';
-
     // Handle enums
     if ((schema.enum || []).length > 0 && ['string', 'number', 'integer'].includes(type)) {
       this.enumArrayName = upperCase(this.typeName).replace(/\s+/g, '_');
       this.enumArrayFileName = fileName(this.typeName + '-array');
-
       const names = schema['x-enumNames'] as string[] || [];
       const descriptions = schema['x-enumDescriptions'] as string[] || [];
       const values = schema.enum || [];
@@ -51,16 +40,13 @@ export class Model extends GenType {
         const enumValue = new EnumValue(type, names[i], descriptions[i], values[i], options);
         this.enumValues.push(enumValue);
       }
-
       // When enumStyle is 'alias' it is handled as a simple type.
       this.isEnum = options.enumStyle !== 'alias';
     }
-
     const hasAllOf = schema.allOf && schema.allOf.length > 0;
     const hasOneOf = schema.oneOf && schema.oneOf.length > 0;
     this.isObject = (type === 'object' || !!schema.properties) && !schema.nullable && !hasAllOf && !hasOneOf;
     this.isSimple = !this.isObject && !this.isEnum;
-
     if (this.isObject) {
       // Object
       const propertiesByName = new Map<string, Property>();
@@ -75,7 +61,6 @@ export class Model extends GenType {
     this.collectImports(schema);
     this.updateImports();
   }
-
   protected initPathToRoot(): string {
     if (this.namespace) {
       // for each namespace level go one directory up
@@ -84,12 +69,10 @@ export class Model extends GenType {
     }
     return '../';
   }
-
   protected skipImport(name: string): boolean {
     // Don't import own type
     return this.name === name;
   }
-
   private collectObject(schema: SchemaObject, propertiesByName: Map<string, Property>) {
     if (schema.type === 'object' || !!schema.properties) {
       // An object definition
